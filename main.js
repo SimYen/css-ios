@@ -1,11 +1,13 @@
-function drainBatt() {
-    var drain = setInterval(battery, 3000)
-    function battery() {
-        for (var x = 20; x > 0; x--) {
-            var battElement = document.getElementById('fullBar');
-            battElement.style.width = x + "px";
+function drainBatt(from, to) {
+    let x = from;
+    let timerId = setInterval(function() {
+        var battElement = document.getElementById('fullBar');
+        if (x > 0) {
+            var battWidth = x + "px";
+            battElement.style.width = battWidth;
         }
-    }
+        x--;
+    }, 1000);
 }
 
 function createContent() {
@@ -17,5 +19,5 @@ function createContent() {
     }
 }
 
-drainBatt();
+drainBatt(21, 0);
 createContent();
